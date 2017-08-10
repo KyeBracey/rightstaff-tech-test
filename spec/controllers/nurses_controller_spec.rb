@@ -9,9 +9,10 @@ RSpec.describe NursesController, type: :controller do
 
     it 'returns a list of nurses' do
       role = Role.create({name: 'test_role'})
-      nurse = Nurse.create({email: 'test@test.com', first_name: 'test', last_name: 'test', role: role})
+      nurse1 = Nurse.create({email: 'test@test.com', first_name: 'test', last_name: 'test', role: role})
+      nurse2 = Nurse.create({email: 'test2@test.com', first_name: 'test', last_name: 'test', role: role})
       get :index
-      expect(assigns(:nurses)).to eq([nurse])
+      expect(assigns(:nurses)).to eq([nurse1, nurse2])
     end
   end
 end
