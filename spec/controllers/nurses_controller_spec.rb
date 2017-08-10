@@ -15,4 +15,11 @@ RSpec.describe NursesController, type: :controller do
       expect(assigns(:nurses)).to eq([nurse1, nurse2])
     end
   end
+
+  describe 'GET /:id' do
+    it 'responds with 200' do
+      get :show, params: { id: 1 }
+      expect(response).to have_http_status(200)
+    end
+  end
 end
