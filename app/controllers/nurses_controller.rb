@@ -8,4 +8,8 @@ class NursesController < ApplicationController
     @nurse = Nurse.find(params[:id])
     render json: {data: @nurse}, status: :ok
   end
+
+  def create
+    render json: {}, status: :ok
+  end
 end
