@@ -1,5 +1,6 @@
 class NursesController < ApplicationController
   def index
-    render json: {}, status: :ok
+    @nurses = Nurse.all
+    render json: {data: @nurses}, status: :ok
   end
 end
