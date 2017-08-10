@@ -5,6 +5,7 @@ class NursesController < ApplicationController
   end
 
   def show
-    render json: {}, status: :ok
+    @nurse = Nurse.find(params[:id])
+    render json: {data: @nurse}, status: :ok
   end
 end
