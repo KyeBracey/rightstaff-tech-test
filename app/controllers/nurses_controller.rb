@@ -17,7 +17,12 @@ class NursesController < ApplicationController
   end
 
   def update
-    render json: {}, status: :ok
+    nurse = Nurse.find(params[:id])
+    if nurse.update_attributes(nurse_params)
+      render json: {message: "Updated details for nurse with id: #{nurse.id}"}, status: :ok
+    else
+      render json: {message: 'Edit unsuccessful'}, status: :bad_request
+    end
   end
 end
 

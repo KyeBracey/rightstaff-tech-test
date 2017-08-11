@@ -51,5 +51,15 @@ RSpec.describe NursesController, type: :controller do
       put :update, params: { id: nurse1.id }
       expect(response).to have_http_status(200)
     end
+
+    it 'updates the details of a nurse' do
+      put :update, params: { id: nurse1.id, first_name: 'new_fname', last_name: 'new_lname', email: 'newemail@test.com' }
+      expect(JSON.parse(response.body)['message']).to eq("Updated details for nurse with id: #{nurse1.id}")
+    end
+
+    it 'sends an error message when invalid details are given' do
+      put :update, params: { id: nurse1.id, email: 'invalid_email' }
+      expect(JSON.parse(response.body)['message']).to eq('Edit unsuccessful')
+    end
   end
 end
