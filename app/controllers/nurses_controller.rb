@@ -5,8 +5,11 @@ class NursesController < ApplicationController
   end
 
   def show
-    @nurse = Nurse.find(params[:id])
-    render json: {data: @nurse}, status: :ok
+    if @nurse = Nurse.find_by_id(params[:id])
+      render json: {data: @nurse}, status: :ok
+    else
+      render json: { message: "Could not find nurse with id: #{params[:id]}" }, status: :bad_request
+    end
   end
 
   def create

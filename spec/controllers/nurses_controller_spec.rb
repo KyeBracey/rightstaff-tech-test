@@ -27,6 +27,12 @@ RSpec.describe NursesController, type: :controller do
       get :show, params: { id: nurse1.id }
       expect(assigns(:nurse)).to eq(nurse1)
     end
+
+    it 'responds with an error message when an invalid id is given' do
+      get :show, params: { id: 9999 }
+      expect(response).to have_http_status(400)
+      expect(JSON.parse(response.body)['message']).to eq 'Could not find nurse with id: 9999'
+    end
   end
 
   describe 'POST /create' do
