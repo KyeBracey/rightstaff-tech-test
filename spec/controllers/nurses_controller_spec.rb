@@ -61,5 +61,11 @@ RSpec.describe NursesController, type: :controller do
       put :update, params: { id: nurse1.id, email: 'invalid_email' }
       expect(JSON.parse(response.body)['message']).to eq('Edit unsuccessful')
     end
+
+    it 'sends an error message when the record does not exist' do
+      put :update, params: { id: 9999 }
+      expect(response).to have_http_status(400)
+      expect(JSON.parse(response.body)['message']).to eq('Could not find nurse with id: 9999')
+    end
   end
 end

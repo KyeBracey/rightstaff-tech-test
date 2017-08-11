@@ -17,11 +17,14 @@ class NursesController < ApplicationController
   end
 
   def update
-    nurse = Nurse.find(params[:id])
-    if nurse.update_attributes(nurse_params)
-      render json: {message: "Updated details for nurse with id: #{nurse.id}"}, status: :ok
+    if nurse = Nurse.find_by_id(params[:id])
+      if nurse.update_attributes(nurse_params)
+        render json: {message: "Updated details for nurse with id: #{nurse.id}"}, status: :ok
+      else
+        render json: {message: 'Edit unsuccessful'}, status: :bad_request
+      end
     else
-      render json: {message: 'Edit unsuccessful'}, status: :bad_request
+      return render json: {message: "Could not find nurse with id: #{params[:id]}"}, status: :bad_request
     end
   end
 end
