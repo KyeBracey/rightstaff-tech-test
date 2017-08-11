@@ -44,6 +44,12 @@ RSpec.describe NursesController, type: :controller do
                                     }
       }.to change(Nurse, :count).by(1)
     end
+
+    it 'responds with an error message if invalid details are given' do
+      post :create, params: { role: role, email: 'invalid_email' }
+      expect(response).to have_http_status(400)
+      expect(JSON.parse(response.body)['message']).to eq('Invalid details - record not created')
+    end
   end
 
   describe 'PUT /update' do

@@ -12,8 +12,11 @@ class NursesController < ApplicationController
   def create
     role = Role.find(params[:role])
     nurse = role.nurses.build(nurse_params)
-    nurse.save
-    render json: {}, status: :ok
+    if nurse.save
+      render json: {}, status: :ok
+    else
+      render json: {message: 'Invalid details - record not created'}, status: :bad_request
+    end
   end
 
   def update
