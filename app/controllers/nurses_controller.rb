@@ -28,5 +28,5 @@ class NursesController < ApplicationController
 end
 
 def nurse_params
-  params.permit(:email, :first_name, :last_name, :phone_number, :verified, :sign_in_count)
+  params.permit(:email, :first_name, :last_name, :phone_number)
 end
