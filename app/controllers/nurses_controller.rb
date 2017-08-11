@@ -28,6 +28,10 @@ class NursesController < ApplicationController
       render json: {message: 'Edit unsuccessful'}, status: :bad_request
     end
   end
+
+  def destroy
+    render json: {}, status: :ok
+  end
 end
 
 def nurse_params

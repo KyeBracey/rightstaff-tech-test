@@ -74,4 +74,11 @@ RSpec.describe NursesController, type: :controller do
       expect(JSON.parse(response.body)['message']).to eq('Could not find nurse with id: 9999')
     end
   end
+
+  describe 'DELETE /' do
+    it 'responds with 200' do
+      delete :destroy, params: { id: nurse1.id }
+      expect(response).to have_http_status(200)
+    end
+  end
 end
