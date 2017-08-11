@@ -30,7 +30,12 @@ class NursesController < ApplicationController
   end
 
   def destroy
-    render json: {}, status: :ok
+    if nurse = Nurse.find_by_id(params[:id])
+      nurse.destroy
+      render json: {message: "Deleted records for nurse with id: #{params[:id]}"}, status: :ok
+    else
+      render json: {message: "Could not find nurse with id: #{params[:id]}"}, status: :bad_request
+    end
   end
 end
 

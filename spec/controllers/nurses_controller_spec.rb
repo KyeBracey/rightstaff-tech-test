@@ -80,5 +80,16 @@ RSpec.describe NursesController, type: :controller do
       delete :destroy, params: { id: nurse1.id }
       expect(response).to have_http_status(200)
     end
+
+    it 'deletes the nurse record' do
+      expect { delete :destroy, params: { id: nurse1.id } }.to change(Nurse, :count).by(-1)
+      expect(JSON.parse(response.body)['message']).to eq("Deleted records for nurse with id: #{nurse1.id}")
+    end
+
+    it 'responds with an error message when the record does not exist' do
+      delete :destroy, params: { id: 9999 }
+      expect(response).to have_http_status(400)
+      expect(JSON.parse(response.body)['message']).to eq('Could not find nurse with id: 9999')
+    end
   end
 end
