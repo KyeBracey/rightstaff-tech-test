@@ -45,4 +45,11 @@ RSpec.describe NursesController, type: :controller do
       }.to change(Nurse, :count).by(1)
     end
   end
+
+  describe 'POST /update' do
+    it 'responds with 200' do
+      post :update, params: { id: nurse1.id }
+      expect(response).to have_http_status(200)
+    end
+  end
 end

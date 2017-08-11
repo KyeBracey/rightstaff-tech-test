@@ -15,6 +15,10 @@ class NursesController < ApplicationController
     nurse.save
     render json: {}, status: :ok
   end
+
+  def update
+    render json: {}, status: :ok
+  end
 end
 
 def nurse_params
