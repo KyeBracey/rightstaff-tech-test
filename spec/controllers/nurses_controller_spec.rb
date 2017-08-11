@@ -34,5 +34,15 @@ RSpec.describe NursesController, type: :controller do
       post :create, params: { first_name: 'test', last_name: 'test', email: 'test@test.com', role: role }
       expect(response).to have_http_status(200)
     end
+
+    it 'creates a new nurse entry' do
+      expect{ post :create, params: {
+                                      first_name: 'test',
+                                      last_name: 'test',
+                                      email: 'test@test.com',
+                                      role: role
+                                    }
+      }.to change(Nurse, :count).by(1)
+    end
   end
 end

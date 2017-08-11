@@ -10,6 +10,13 @@ class NursesController < ApplicationController
   end
 
   def create
+    role = Role.find(params[:role])
+    nurse = role.nurses.build(nurse_params)
+    nurse.save
     render json: {}, status: :ok
   end
+end
+
+def nurse_params
+  params.permit(:email, :first_name, :last_name, :phone_number, :verified, :sign_in_count)
 end
