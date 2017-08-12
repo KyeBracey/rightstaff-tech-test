@@ -2,8 +2,20 @@ require 'rails_helper'
 
 RSpec.describe NursesController, type: :controller do
   let!(:role) { Role.create({name: 'test_role'}) }
-  let!(:nurse1) { Nurse.create({email: 'test1@test.com', first_name: 'test1', last_name: 'test1', role: role, verified: true, sign_in_count: 0}) }
-  let!(:nurse2) { Nurse.create({email: 'test2@test.com', first_name: 'test2', last_name: 'test2', role: role}) }
+  let!(:nurse1) { Nurse.create({
+                                  email: 'test1@test.com',
+                                  first_name: 'test1',
+                                  last_name: 'test1',
+                                  role: role,
+                                  verified: true,
+                                  sign_in_count: 0})
+                                }
+  let!(:nurse2) { Nurse.create({
+                                  email: 'test2@test.com',
+                                  first_name: 'test2',
+                                  last_name: 'test2',
+                                  role: role})
+                                }
 
   describe 'GET /' do
     it 'responds with 200' do
