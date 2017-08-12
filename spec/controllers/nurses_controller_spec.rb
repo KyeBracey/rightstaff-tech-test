@@ -13,7 +13,7 @@ RSpec.describe NursesController, type: :controller do
 
     it 'returns a list of nurses' do
       get :index
-      expect(assigns(:nurses)).to eq([nurse1, nurse2])
+      expect(JSON.parse(response.body)['data']).to eq([JSON.parse(nurse1.to_json), JSON.parse(nurse2.to_json)])
     end
   end
 

@@ -1,7 +1,7 @@
 class NursesController < ApplicationController
   def index
-    @nurses = Nurse.all
-    render json: {data: @nurses}, status: :ok
+    nurses = Nurse.all
+    render json: {data: nurses}, status: :ok
   end
 
   def show
@@ -24,7 +24,6 @@ class NursesController < ApplicationController
 
   def update
     nurse = Nurse.find_by_id(params[:id])
-    p nurse
     return render json: {message: "Could not find nurse with id: #{params[:id]}"}, status: :bad_request unless nurse
     nurse.update_attributes(nurse_update_params)
     if nurse.save
