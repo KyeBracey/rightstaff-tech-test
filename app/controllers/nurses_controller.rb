@@ -20,12 +20,16 @@ class NursesController < ApplicationController
     else
       render json: {message: 'Invalid details - record not created'}, status: :bad_request
     end
+    p nurse
+    p nurse.valid?
   end
 
   def update
     nurse = Nurse.find_by_id(params[:id])
+    p nurse
     return render json: {message: "Could not find nurse with id: #{params[:id]}"}, status: :bad_request unless nurse
-    if nurse.update_attributes(nurse_params)
+    nurse.update_attributes(nurse_update_params)
+    if nurse.save
       render json: {message: "Updated details for nurse with id: #{nurse.id}"}, status: :ok
     else
       render json: {message: 'Edit unsuccessful'}, status: :bad_request
@@ -43,5 +47,9 @@ class NursesController < ApplicationController
 end
 
 def nurse_params
+  params.permit(:email, :first_name, :last_name, :phone_number, :verified, :sign_in_count)
+end
+
+def nurse_update_params
   params.permit(:email, :first_name, :last_name, :phone_number)
 end
