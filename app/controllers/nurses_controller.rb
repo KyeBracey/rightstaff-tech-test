@@ -6,7 +6,7 @@ class NursesController < ApplicationController
 
   def show
     if nurse = Nurse.find_by_id(params[:id])
-      render json: {data: nurse}, status: :ok
+      render json: { data: nurse }, status: :ok
     else
       render json: { message: "Could not find nurse with id: #{params[:id]}" }, status: :bad_request
     end

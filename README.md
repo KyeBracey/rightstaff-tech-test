@@ -1,6 +1,6 @@
 # Right Staff Tech Test
 
-Thank you for giving me the opportunity to attempt this tech test.  Please see below for user instructions and an explanation of my approach to completing the task.
+Thank you for giving me the opportunity to attempt this test.  Please see below for user instructions and an explanation of my approach to completing the task.
 
 ## Requirements
 
@@ -21,15 +21,24 @@ The initial Rails application has already been built. Along with some database t
 
 ## Instructions
 
-# To view all nurses in the system
+### Getting started
+
+- Clone this repo to your local machine
+- `$ bundle install`
+- `$ rails db:create`
+- `$ rails db:migrate`
+- To run the tests: `$ rspec`
+- To run the API: `$ rails s` - this will tell you the base URL to send requests to (http://localhost:3000 by default)
+
+### To view all nurses in the system
 
 Send a GET request to /nurses.
 
-# To view a single nurse object
+### To view a single nurse object
 
 Send a GET request to /nurses/:id, where :id is an integer matching the id of the nurse you wish to view.
 
-# To create a new nurse object
+### To create a new nurse object
 
 Send a POST request to /nurses, with the following params:
 
@@ -41,11 +50,11 @@ Send a POST request to /nurses, with the following params:
 - verified (optional): a boolean value (true or false)
 - sign_in_count (optional): an integer
 
-# To update a nurse object
+### To update a nurse object
 
 Send a PUT request to /nurses/:id, where :id is an integer matching the id of the nurse you wish to update, with any of the params applicable to a /create request, excluding `verified` and `sign_in_count`.
 
-# To delete a nurse object
+### To delete a nurse object
 
 Send a DELETE request to /nurses/:id, where :id is an integer matching the id of the nurse you wish to delete.
 
