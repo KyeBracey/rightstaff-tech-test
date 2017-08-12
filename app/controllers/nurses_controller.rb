@@ -5,8 +5,8 @@ class NursesController < ApplicationController
   end
 
   def show
-    if @nurse = Nurse.find_by_id(params[:id])
-      render json: {data: @nurse}, status: :ok
+    if nurse = Nurse.find_by_id(params[:id])
+      render json: {data: nurse}, status: :ok
     else
       render json: { message: "Could not find nurse with id: #{params[:id]}" }, status: :bad_request
     end
@@ -20,8 +20,6 @@ class NursesController < ApplicationController
     else
       render json: {message: 'Invalid details - record not created'}, status: :bad_request
     end
-    p nurse
-    p nurse.valid?
   end
 
   def update

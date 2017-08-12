@@ -25,7 +25,7 @@ RSpec.describe NursesController, type: :controller do
 
     it 'returns the details of one nurse' do
       get :show, params: { id: nurse1.id }
-      expect(assigns(:nurse)).to eq(nurse1)
+      expect(JSON.parse(response.body)['data']).to eq(JSON.parse(nurse1.to_json))
     end
 
     it 'responds with an error message when an invalid id is given' do
