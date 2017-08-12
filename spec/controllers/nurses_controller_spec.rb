@@ -54,6 +54,17 @@ RSpec.describe NursesController, type: :controller do
       }.to change(Nurse, :count).by(1)
     end
 
+    it 'responds with a confirmation message and the details of the new nurse entry' do
+      post :create, params: {
+                              first_name: 'confirmation_test',
+                              last_name: 'test',
+                              email: 'test@test.com',
+                              role: role,
+                            }
+      expect(JSON.parse(response.body)['message']).to eq('New nurse entry successfully created')
+      expect(JSON.parse(response.body)['data']['first_name']).to eq('confirmation_test')
+    end
+
     it 'responds with an error message if invalid details are given' do
       post :create, params: { role: role, email: 'invalid_email' }
       expect(response).to have_http_status(400)
